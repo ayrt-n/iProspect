@@ -37,17 +37,21 @@ struct ProspectsView: View {
     var body: some View {
         NavigationStack {
             List(prospects, selection: $selectedProspects) { prospect in
-                HStack {
-                    if filter == .none {
-                        let icon = prospect.isContacted ? "person.crop.circle.fill.badge.checkmark" : "person.crop.circle.fill.badge.xmark"
-                        Image(systemName: icon)
-                            .foregroundStyle(prospect.isContacted ? .green : .red)
-                    }
-                    VStack(alignment: .leading) {
-                        Text(prospect.name)
-                            .font(.headline)
-                        Text(prospect.emailAddress)
-                            .foregroundStyle(.secondary)
+                NavigationLink {
+                    EditProspectView(prospect: prospect)
+                } label : {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(prospect.name)
+                                .font(.headline)
+                            Text(prospect.emailAddress)
+                                .foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        if filter == .none && prospect.isContacted {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundStyle(.green)
+                        }
                     }
                 }
                 .swipeActions {
@@ -74,27 +78,30 @@ struct ProspectsView: View {
                 }
                 .tag(prospect)
             }
-                .navigationTitle(title)
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button("Scan", systemImage: "qrcode.viewfinder") {
-                            isShowingScanner = true
-                        }
-                    }
-                    
-                    ToolbarItem(placement: .topBarLeading) {
-                        EditButton()
-                    }
-                    
-                    if !selectedProspects.isEmpty {
-                        ToolbarItem(placement: .bottomBar) {
-                            Button("Delete Selected", action: delete)
-                        }
+            .navigationTitle(title)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Scan", systemImage: "qrcode.viewfinder") {
+                        isShowingScanner = true
                     }
                 }
-                .sheet(isPresented: $isShowingScanner) {
-                    CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Hudson\npaul@hackingwithswift.com", completion: handleScan)
+                
+                ToolbarItem(placement: .topBarLeading) {
+                    EditButton()
                 }
+                
+                if !selectedProspects.isEmpty {
+                    ToolbarItem(placement: .bottomBar) {
+                        Button("Delete Selected", action: delete)
+                    }
+                }
+            }
+            .sheet(isPresented: $isShowingScanner) {
+                CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Hudson\npaul@hackingwithswift.com", completion: handleScan)
+            }
+            .onAppear {
+                selectedProspects = []
+            }
         }
     }
     
@@ -140,7 +147,6 @@ struct ProspectsView: View {
             content.subtitle = prospect.emailAddress
             content.sound = UNNotificationSound.default
             
-            var dateComponents = DateComponents()
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
             
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
