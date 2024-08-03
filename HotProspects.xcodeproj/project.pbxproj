@@ -17,6 +17,7 @@
 		E854A6642C5D51B80056555D /* Prospect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E854A6632C5D51B80056555D /* Prospect.swift */; };
 		E854A6672C5E55E80056555D /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = E854A6662C5E55E80056555D /* CodeScanner */; };
 		E854A6692C5E66E40056555D /* EditProspectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E854A6682C5E66E40056555D /* EditProspectView.swift */; };
+		E854A66D2C5E7AEC0056555D /* SortableProspectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E854A66C2C5E7AEC0056555D /* SortableProspectsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		E854A6612C5D50510056555D /* MeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeView.swift; sourceTree = "<group>"; };
 		E854A6632C5D51B80056555D /* Prospect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prospect.swift; sourceTree = "<group>"; };
 		E854A6682C5E66E40056555D /* EditProspectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProspectView.swift; sourceTree = "<group>"; };
+		E854A66C2C5E7AEC0056555D /* SortableProspectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortableProspectsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				E854A64E2C5D24E10056555D /* HotProspectsApp.swift */,
 				E854A6502C5D24E10056555D /* ContentView.swift */,
 				E854A65F2C5D504B0056555D /* ProspectsView.swift */,
+				E854A66C2C5E7AEC0056555D /* SortableProspectsView.swift */,
 				E854A6632C5D51B80056555D /* Prospect.swift */,
 				E854A6612C5D50510056555D /* MeView.swift */,
 				E854A6522C5D24E20056555D /* Assets.xcassets */,
@@ -161,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E854A66D2C5E7AEC0056555D /* SortableProspectsView.swift in Sources */,
 				E854A6622C5D50510056555D /* MeView.swift in Sources */,
 				E854A6642C5D51B80056555D /* Prospect.swift in Sources */,
 				E854A6602C5D504B0056555D /* ProspectsView.swift in Sources */,
